@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('profilings', function (Blueprint $table) {
             $table->id();
-            $table->id();
             $table->foreignId('umkm_id')->constrained('umkms')->onDelete('cascade');
             $table->integer('tenaga_kerja')->nullable();
             $table->string('kapasitas_produksi')->nullable();
