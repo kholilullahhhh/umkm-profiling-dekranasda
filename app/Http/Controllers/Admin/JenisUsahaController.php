@@ -12,7 +12,7 @@ class JenisUsahaController extends Controller
 
     public function __construct(JenisUsahaContract $repo)
     {
-        $this->title = 'jenis_usaha';
+        $this->title = 'jenisusaha';
         $this->repo = $repo;
     }
     public function index()
