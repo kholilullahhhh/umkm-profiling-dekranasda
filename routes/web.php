@@ -60,45 +60,41 @@ Route::domain('')->group(function () { // development
 
 
         // MENU DATA UMKM
-                Route::group(['prefix' => '/todo'], function () {
-            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
-            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
-            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
-            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
-            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
-            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
-            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
+                Route::group(['prefix' => '/umkm'], function () {
+            Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
+            Route::get('/data', [UmkmController::class, 'data'])->name('umkm.data');
+            Route::get('/create', [UmkmController::class, 'create'])->name('umkm.create');
+            Route::post('/store', [UmkmController::class, 'store'])->name('umkm.store');
+            Route::get('/{id}/edit', [UmkmController::class, 'edit'])->name('umkm.edit');
+            Route::put('/{id}', [UmkmController::class, 'update'])->name('umkm.update');
+            Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.delete');
         });
 
                 // MENU JENIS USAHA
-                Route::group(['prefix' => '/todo'], function () {
-            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
-            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
-            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
-            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
-            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
-            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
-            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
+                Route::group(['prefix' => '/jenisusaha'], function () {
+            Route::get('/', [JenisusahaController::class, 'index'])->name('jenisusaha.index');
+            Route::get('/data', [JenisusahaController::class, 'data'])->name('jenisusaha.data');
+            Route::get('/create', [JenisusahaController::class, 'create'])->name('jenisusaha.create');
+            Route::post('/store', [JenisusahaController::class, 'store'])->name('jenisusaha.store');
+            Route::get('/{id}/edit', [JenisusahaController::class, 'edit'])->name('jenisusaha.edit');
+            Route::put('/{id}', [JenisusahaController::class, 'update'])->name('jenisusaha.update');
+            Route::delete('/{id}', [JenisusahaController::class, 'destroy'])->name('jenisusaha.delete');
         });
 
                 // MENU DATA PEMBINAAN
-                Route::group(['prefix' => '/todo'], function () {
-            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
-            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
-            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
-            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
-            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
-            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
-            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
+                Route::group(['prefix' => '/pembinaan'], function () {
+            Route::get('/', [PembinaanController::class, 'index'])->name('pembinaan.index');
+            Route::get('/data', [PembinaanController::class, 'data'])->name('pembinaan.data');
+            Route::get('/create', [PembinaanController::class, 'create'])->name('pembinaan.create');
+            Route::post('/store', [PembinaanController::class, 'store'])->name('pembinaan.store');
+            Route::get('/{id}/edit', [PembinaanController::class, 'edit'])->name('pembinaan.edit');
+            Route::put('/{id}', [PembinaanController::class, 'update'])->name('pembinaan.update');
+            Route::delete('/{id}', [PembinaanController::class, 'destroy'])->name('pembinaan.delete');
         });
 
 
 
-        // Routes untuk mobile app (mahasiswa)
-        Route::group(['prefix' => 'mobile/attendance'], function () {
-            Route::post('/scan', [AttendanceController::class, 'processAttendance']);
-            Route::get('/history/{studentId}', [AttendanceController::class, 'getStudentHistory']);
-        });
+
 
 
 
