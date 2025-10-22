@@ -16,12 +16,16 @@ class MenuSeeder extends Seeder
         $menu = [
             ['name' => 'APPS', 'icon' => '', 'url' => '#', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '0'],
             ['name' => 'DATA MASTER', 'icon' => '', 'url' => '#', 'index' => 2, 'main_menu' => 'DATA MASTER', 'active' => '1', 'parent' => '0'],
-            ['name' => 'USER', 'icon' => '', 'url' => '#', 'index' => 3, 'main_menu' => 'USER',  'active' => '1', 'parent' => '0'],
+            ['name' => 'USER', 'icon' => '', 'url' => '#', 'index' => 3, 'main_menu' => 'USER', 'active' => '1', 'parent' => '0'],
             ['name' => 'USER SETTING', 'icon' => '', 'url' => '#', 'index' => 4, 'main_menu' => 'USER SETTING', 'active' => '1', 'parent' => '0'],
 
             // APPS
             ['name' => 'Todo', 'icon' => 'bi-stack', 'url' => 'todo', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
-            ['name' => 'Attendance', 'icon' => 'bi-stack', 'url' => 'attendance', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Data UMKM', 'icon' => 'bi-stack', 'url' => 'dataUmkm', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Jenis Usaha', 'icon' => 'bi-stack', 'url' => 'jenisUsaha', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Data Pembinaan', 'icon' => 'bi-stack', 'url' => 'dataPembinaan', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Profiling UMKM', 'icon' => 'bi-stack', 'url' => 'profilingUmkm', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Laporan & Analisis', 'icon' => 'bi-stack', 'url' => 'laporanAnalisis', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
 
             // DATA MASTER
 

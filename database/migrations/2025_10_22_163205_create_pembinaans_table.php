@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('students', function (Blueprint $table) {
+        Schema::create('pembinaans', function (Blueprint $table) {
             $table->id();
-            $table->string('nim')->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->nullable();
-            // $table->foreignId('program_study_id')->constrained();
+            $table->foreignId('umkm_id')->constrained('umkms')->onDelete('cascade');
+            $table->string('judul_pembinaan');
+            $table->date('tanggal');
+            $table->text('deskripsi')->nullable();
+            $table->text('hasil')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('studentes');
+        Schema::dropIfExists('pembinaans');
     }
 };

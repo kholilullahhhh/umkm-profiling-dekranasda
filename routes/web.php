@@ -59,23 +59,40 @@ Route::domain('')->group(function () { // development
         });
 
 
-        // MENU ATTENDANCE
-
-        Route::group(['prefix' => '/attendance'], function () {
-            Route::get('/', [AttendanceController::class, 'index'])->name('attendance.index');
-            Route::get('/data', [AttendanceController::class, 'data'])->name('attendance.data');
-            Route::get('/create', [AttendanceController::class, 'create'])->name('attendance.create');
-            Route::post('/store', [AttendanceController::class, 'store'])->name('attendance.store');    
-            Route::get('/{id}/edit', [AttendanceController::class, 'edit'])->name('attendance.edit');
-            Route::put('/{id}', [AttendanceController::class, 'update'])->name('attendance.update');
-            Route::delete('/{id}', [AttendanceController::class, 'destroy'])->name('attendance.delete');
-            Route::get('/scan', [AttendanceController::class, 'scanQR'])->name('attendance.scan');
-            Route::post('/process', [AttendanceController::class, 'processAttendance'])->name('attendance.process');
-            Route::get('/generate-qr/{courseId}', [AttendanceController::class, 'generateQR'])->name('attendance.generate-qr');
-            Route::get('/active-qr/{courseId}', [AttendanceController::class, 'getActiveQR'])->name('attendance.active-qr');
-            Route::get('/report', [AttendanceController::class, 'report'])->name('attendance.report');
-            Route::get('/report-data', [AttendanceController::class, 'getReportData'])->name('attendance.report-data');
+        // MENU DATA UMKM
+                Route::group(['prefix' => '/todo'], function () {
+            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
+            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
+            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
+            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
+            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
+            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
         });
+
+                // MENU JENIS USAHA
+                Route::group(['prefix' => '/todo'], function () {
+            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
+            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
+            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
+            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
+            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
+            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
+        });
+
+                // MENU DATA PEMBINAAN
+                Route::group(['prefix' => '/todo'], function () {
+            Route::get('/', [TodoController::class, 'index'])->name('todo.index');
+            Route::get('/data', [TodoController::class, 'data'])->name('todo.data');
+            Route::get('/create', [TodoController::class, 'create'])->name('todo.create');
+            Route::post('/store', [TodoController::class, 'store'])->name('todo.store');
+            Route::get('/{id}/edit', [TodoController::class, 'edit'])->name('todo.edit');
+            Route::put('/{id}', [TodoController::class, 'update'])->name('todo.update');
+            Route::delete('/{id}', [TodoController::class, 'destroy'])->name('todo.delete');
+        });
+
+
 
         // Routes untuk mobile app (mahasiswa)
         Route::group(['prefix' => 'mobile/attendance'], function () {
