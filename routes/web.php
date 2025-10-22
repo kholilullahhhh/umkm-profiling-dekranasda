@@ -7,7 +7,9 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\TodoController;
 use App\Http\Controllers\Admin\UserMenuController;
 use App\Http\Controllers\Admin\UsersController;
-use App\Http\Controllers\Admin\AttendanceController;
+use App\Http\Controllers\Admin\UmkmController;
+use App\Http\Controllers\Admin\JenisUsahaController;
+use App\Http\Controllers\Admin\PembinaanController;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -60,7 +62,7 @@ Route::domain('')->group(function () { // development
 
 
         // MENU DATA UMKM
-                Route::group(['prefix' => '/umkm'], function () {
+        Route::group(['prefix' => '/umkm'], function () {
             Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
             Route::get('/data', [UmkmController::class, 'data'])->name('umkm.data');
             Route::get('/create', [UmkmController::class, 'create'])->name('umkm.create');
@@ -70,8 +72,8 @@ Route::domain('')->group(function () { // development
             Route::delete('/{id}', [UmkmController::class, 'destroy'])->name('umkm.delete');
         });
 
-                // MENU JENIS USAHA
-                Route::group(['prefix' => '/jenisusaha'], function () {
+        // MENU JENIS USAHA
+        Route::group(['prefix' => '/jenisusaha'], function () {
             Route::get('/', [JenisusahaController::class, 'index'])->name('jenisusaha.index');
             Route::get('/data', [JenisusahaController::class, 'data'])->name('jenisusaha.data');
             Route::get('/create', [JenisusahaController::class, 'create'])->name('jenisusaha.create');
@@ -81,8 +83,8 @@ Route::domain('')->group(function () { // development
             Route::delete('/{id}', [JenisusahaController::class, 'destroy'])->name('jenisusaha.delete');
         });
 
-                // MENU DATA PEMBINAAN
-                Route::group(['prefix' => '/pembinaan'], function () {
+        // MENU DATA PEMBINAAN
+        Route::group(['prefix' => '/pembinaan'], function () {
             Route::get('/', [PembinaanController::class, 'index'])->name('pembinaan.index');
             Route::get('/data', [PembinaanController::class, 'data'])->name('pembinaan.data');
             Route::get('/create', [PembinaanController::class, 'create'])->name('pembinaan.create');

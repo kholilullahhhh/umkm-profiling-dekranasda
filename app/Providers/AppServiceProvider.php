@@ -10,7 +10,9 @@ use App\Http\Services\Repositories\Contracts\SettingContract;
 use App\Http\Services\Repositories\Contracts\UserMenuContract;
 use App\Http\Services\Repositories\Contracts\UsersContract;
 use App\Http\Services\Repositories\Contracts\TodoContract;
-use App\Http\Services\Repositories\Contracts\AttendanceContract;
+use App\Http\Services\Repositories\Contracts\UmkmContract;
+use App\Http\Services\Repositories\Contracts\JenisUsahaContract;
+use App\Http\Services\Repositories\Contracts\PembinaanContract;
 use App\Http\Services\Repositories\MenuRepository;
 use App\Http\Services\Repositories\RoleRepository;
 use App\Http\Services\Repositories\SettingRepository;
@@ -36,7 +38,9 @@ class AppServiceProvider extends ServiceProvider
         $this->app->bind(BaseContract::class, BaseRepository::class);
 
         $this->app->bind(TodoContract::class, \App\Http\Services\Repositories\TodoRepository::class);
-        $this->app->bind(AttendanceContract::class, \App\Http\Services\Repositories\AttendanceRepository::class);
+        $this->app->bind(UmkmContract::class, \App\Http\Services\Repositories\UmkmRepository::class);
+        $this->app->bind(JenisUsahaContract::class, \App\Http\Services\Repositories\JenisUsahaRepository::class);
+        $this->app->bind(PembinaanContract::class, \App\Http\Services\Repositories\PembinaanRepository::class);
 
         $this->app->bind(MenuContract::class, MenuRepository::class);
         $this->app->bind(RoleContract::class, RoleRepository::class);
