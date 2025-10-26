@@ -65,7 +65,7 @@ Route::domain('')->group(function () { // development
         Route::group(['prefix' => '/umkm'], function () {
             Route::get('/', [UmkmController::class, 'index'])->name('umkm.index');
             Route::get('/data', [UmkmController::class, 'data'])->name('umkm.data');
-            Route::get('/create', [UmkmController::class, 'create'])->name('umkm.create');
+            Route::get('/create', [UmkmController::class, 'create'])->name(name: 'umkm.create');
             Route::post('/store', [UmkmController::class, 'store'])->name('umkm.store');
             Route::get('/{id}/edit', [UmkmController::class, 'edit'])->name('umkm.edit');
             Route::put('/{id}', [UmkmController::class, 'update'])->name('umkm.update');

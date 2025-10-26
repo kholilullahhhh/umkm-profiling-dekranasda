@@ -4,19 +4,19 @@
     here show
 @endpush
 
-@push('todo')
+@push('jenisusaha')
     active
 @endpush
 
 @section('content')
     <!--begin::Toolbar-->
     @component('admin._card.breadcrumb')
-        @slot('header')
-            {{ $title }}
-        @endslot
-        @slot('page')
-            Data
-        @endslot
+    @slot('header')
+    {{ $title }}
+    @endslot
+    @slot('page')
+    Data
+    @endslot
     @endcomponent
     <!--end::Toolbar-->
 
@@ -41,13 +41,10 @@
                                     No
                                 </th>
                                 <th class="min-w-75px">
-                                    Tittle
+                                    Nama
                                 </th>
                                 <th class="min-w-200px">
                                     Description
-                                </th>
-                                <th class="min-w-70px">
-                                    Completed
                                 </th>
                                 <th class="text-end min-w-70px">
                                     Actions
@@ -61,8 +58,7 @@
                         {{-- <tbody class="fw-semibold text-gray-600">
                             <tr>
                                 <td class="text-end">
-                                    <a href="#"
-                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
+                                    <a href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
                                         data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                                         <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
                                     <!--begin::Menu-->
@@ -118,7 +114,7 @@
 
 @push('jsScript')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             loadpage(5, '');
             var $pagination = $('.twbs-pagination');
             var defaultOpts = {
@@ -140,7 +136,7 @@
                     },
                     type: "GET",
                     datatype: "json",
-                    success: function(data) {
+                    success: function (data) {
                         $(".datatables").html(data.html);
                     }
                 });
@@ -155,7 +151,7 @@
                     },
                     type: "GET",
                     datatype: "json",
-                    success: function(response) {
+                    success: function (response) {
                         if ($pagination.data("twbs-pagination")) {
                             $pagination.twbsPagination('destroy');
                             $(".datatables").html('<tr><td colspan="4">Data not found</td></tr>');
@@ -168,7 +164,7 @@
                             next: '&#8674;',
                             first: '&#8676;',
                             last: '&#8677;',
-                            onPageClick: function(event, page) {
+                            onPageClick: function (event, page) {
                                 if (page == 1) {
                                     var to = 1;
                                 } else {
@@ -189,27 +185,27 @@
                 });
             }
 
-            $("#button_search, #perPage").on('click change', function(event) {
+            $("#button_search, #perPage").on('click change', function (event) {
                 let search = $('#input_search').val();
                 let per_page = $('#perPage').val() ?? 5;
                 loadpage(per_page, search);
             });
 
-            $("#button_refresh").on('click', function(event) {
+            $("#button_refresh").on('click', function (event) {
                 $('#input_search').val('');
                 loadpage(5, '');
             });
 
 
             // proses delete data
-            $('body').on('click', '.deleteData', function() {
+            $('body').on('click', '.deleteData', function () {
                 var id = $(this).data("id");
                 Swal.fire({
                     title: "Are you sure to Delete?",
                     icon: "question",
                     showCancelButton: true,
                     confirmButtonText: "Yes, delete it!"
-                }).then(function(result) {
+                }).then(function (result) {
                     if (result.value) {
                         $.ajax({
                             headers: {
@@ -217,11 +213,11 @@
                             },
                             type: "DELETE",
                             url: '{{ url("admin/$title") }}/' + id,
-                            success: function(data) {
+                            success: function (data) {
                                 loadpage(5, '');
                                 toastr.success("Successful delete data!");
                             },
-                            error: function(data) {
+                            error: function (data) {
                                 toastr.error("Failed delete data!");
                             }
                         });

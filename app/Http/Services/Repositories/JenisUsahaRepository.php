@@ -4,7 +4,7 @@ namespace App\Http\Services\Repositories;
 
 use App\Http\Services\Repositories\BaseRepository;
 use App\Http\Services\Repositories\Contracts\JenisUsahaContract;
-use App\Models\Todo;
+use App\Models\JenisUsaha;
 
 class JenisUsahaRepository extends BaseRepository implements JenisUsahaContract
 {
@@ -13,7 +13,7 @@ class JenisUsahaRepository extends BaseRepository implements JenisUsahaContract
 	 */
 	protected $model;
 
-	public function __construct(Todo $model)
+	public function __construct(JenisUsaha $model)
 	{
 		$this->model = $model;
 	}
@@ -21,7 +21,7 @@ class JenisUsahaRepository extends BaseRepository implements JenisUsahaContract
 	public function paginated(array $criteria)
 	{
 		$perPage = $criteria['per_page'] ?? 5;
-		$field = $criteria[ 'sort_field'] ?? 'id';
+		$field = $criteria['sort_field'] ?? 'id';
 		$sortOrder = $criteria['sort_order'] ?? 'desc';
 		return $this->model->orderBy($field, $sortOrder)->paginate($perPage);
 	}

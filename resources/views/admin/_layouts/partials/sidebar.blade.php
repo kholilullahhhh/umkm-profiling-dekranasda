@@ -114,8 +114,7 @@
                                         <!--begin:Menu item-->
                                         <div class="menu-item">
                                             <!--begin:Menu link-->
-                                            <a class="menu-link @stack($menu['url']) "
-                                                href="{{ url('admin/' . $menu['url']) }}">
+                                            <a class="menu-link @stack($menu['url']) " href="{{ url('admin/' . $menu['url']) }}">
                                                 <span class="menu-bullet">
                                                     <span class="bullet bullet-dot"></span>
                                                 </span>

@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('id', 40)->primary();
             $table->unsignedBigInteger('id_role');
             $table->foreign('id_role')->references('id')->on('roles');
-            $table->unsignedBigInteger('id_menu');
+            $table->unsignedBigInteger('id_menu');  
             $table->foreign('id_menu')->references('id')->on('menus');
             $table->char('read', 1)->nullable();
             $table->char('create', 1)->nullable();

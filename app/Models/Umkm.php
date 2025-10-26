@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Umkm extends Model
 {
     protected $fillable = [
-        'user_id',
+        // 'user_id',
         'jenis_usaha_id',
         'nama_usaha',
         'pemilik',
@@ -19,16 +19,21 @@ class Umkm extends Model
         'status_binaan'
     ];
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
-    }
+    protected $casts = [
+        'status_binaan' => 'boolean',
+        'omset_per_tahun' => 'decimal:2',
+        'tahun_berdiri' => 'integer'
+    ];
+
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class);
+    // }
 
     public function jenisUsaha()
     {
         return $this->belongsTo(JenisUsaha::class);
     }
-
     public function pembinaan()
     {
         return $this->hasMany(Pembinaan::class);

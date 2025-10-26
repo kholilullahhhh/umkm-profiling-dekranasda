@@ -21,6 +21,13 @@ class UserSeeder extends Seeder
                 'password' => bcrypt('123'),
                 'role' => 1,
             ],
+            [
+                'name' => 'User',
+                'username' => 'user',
+                'email' => 'user@gmail.com',
+                'password' => bcrypt('user123'),
+                'role' => 3,
+            ],
         ];
 
         foreach ($usr as $v) {
@@ -31,6 +38,7 @@ class UserSeeder extends Seeder
                 'password' => $v['password'],
                 'id_role' => $v['role'],
             ]);
-        };
+        }
+        ;
     }
 }

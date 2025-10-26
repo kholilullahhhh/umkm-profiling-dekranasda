@@ -50,26 +50,15 @@ here show
                             <!--begin::Input group-->
                             <div class="row g-9 mb-8">
                                 <div class="col-md-6 fv-row">
-                                    <label class="fs-6 fw-semibold mb-2">Tittle</label>
-                                    <input type="text" class="form-control" placeholder="title" name="title" id="title"
-                                        maxlength="3" value="{{ $data->title ?? '' }}" />
-                                </div>
-
-                                <div class="col-md-6 fv-row">
-                                    <label class="fs-6 fw-semibold mb-2">Complete Task</label>
-                                    <div class="form-check form-switch form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" name="completed" id="completed"
-                                            value="1" {{ isset($data->completed) && $data->completed ? 'checked' : '' }}>
-                                        <label class="form-check-label" for="completed">
-                                            Mark as Complete
-                                        </label>
-                                    </div>
-                                </div>
+                                    <label class="fs-6 fw-semibold mb-2">Nama Jenis Usaha</label>
+                                    <input type="text" class="form-control" placeholder="Nama Jenis Usaha" name="nama_jenis"
+                                        id="nama_jenis" value="{{ $data->nama_jenis ?? '' }}" />
+                                </div>  
 
                                 <div class="col-md-12 fv-row">
-                                    <label class="fs-12 fw-semibold mb-2">Description</label>
-                                    <input type="text" class="form-control" placeholder="description" name="description"
-                                        id="description" value="{{ $data->description ?? '' }}" />
+                                    <label class="fs-12 fw-semibold mb-2">Deskripsi Usaha</label>
+                                    <input type="text" class="form-control" placeholder="deskripsi" name="deskripsi"
+                                        id="deskripsi" value="{{ $data->deskripsi ?? '' }}" />
                                 </div>
                             </div>
                             <!--end::Input group-->

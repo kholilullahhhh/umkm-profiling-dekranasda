@@ -4,19 +4,19 @@
     here show
 @endpush
 
-@push('todo')
+@push('umkm')
     active
 @endpush
 
 @section('content')
     <!--begin::Toolbar-->
     @component('admin._card.breadcrumb')
-        @slot('header')
-            {{ $title }}
-        @endslot
-        @slot('page')
-            Data
-        @endslot
+    @slot('header')
+    {{ $title }}
+    @endslot
+    @slot('page')
+    Data
+    @endslot
     @endcomponent
     <!--end::Toolbar-->
 
@@ -40,14 +40,23 @@
                                 <th class="min-w-20px pe-2">
                                     No
                                 </th>
-                                <th class="min-w-75px">
-                                    Tittle
+                                <th class="min-w-100px">
+                                    Nama Usaha
                                 </th>
-                                <th class="min-w-200px">
-                                    Description
+                                <th class="min-w-100px">
+                                    Pemilik
                                 </th>
-                                <th class="min-w-70px">
-                                    Completed
+                                <th class="min-w-100px">
+                                    Jenis Usaha
+                                </th>
+                                <th class="min-w-100px">
+                                    Kabupaten
+                                </th>
+                                <th class="min-w-100px">
+                                    Skala Usaha
+                                </th>
+                                <th class="min-w-100px">
+                                    Status Binaan
                                 </th>
                                 <th class="text-end min-w-70px">
                                     Actions
@@ -57,35 +66,6 @@
 
                         <tbody class="fw-semibold text-gray-600 datatables">
                         </tbody>
-
-                        {{-- <tbody class="fw-semibold text-gray-600">
-                            <tr>
-                                <td class="text-end">
-                                    <a href="#"
-                                        class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                        <i class="ki-duotone ki-down fs-5 ms-1"></i></a>
-                                    <!--begin::Menu-->
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4"
-                                        data-kt-menu="true">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="apps/ecommerce/catalog/edit-product.html"
-                                                class="menu-link px-3">Edit</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3"
-                                                data-kt-ecommerce-product-filter="delete_row">Delete</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu-->
-                                </td>
-                            </tr>
-                        </tbody> --}}
-
                     </table>
                     <!--end::Table-->
 
@@ -104,9 +84,6 @@
                     <!--end::Pagination-->
 
                 </div>
-
-
-
                 <!--end::Card body-->
             </div>
             <!--end::Products-->
@@ -118,7 +95,7 @@
 
 @push('jsScript')
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             loadpage(5, '');
             var $pagination = $('.twbs-pagination');
             var defaultOpts = {
@@ -140,7 +117,7 @@
                     },
                     type: "GET",
                     datatype: "json",
-                    success: function(data) {
+                    success: function (data) {
                         $(".datatables").html(data.html);
                     }
                 });
@@ -155,10 +132,10 @@
                     },
                     type: "GET",
                     datatype: "json",
-                    success: function(response) {
+                    success: function (response) {
                         if ($pagination.data("twbs-pagination")) {
                             $pagination.twbsPagination('destroy');
-                            $(".datatables").html('<tr><td colspan="4">Data not found</td></tr>');
+                            $(".datatables").html('<tr><td colspan="8">Data not found</td></tr>');
                         }
                         $pagination.twbsPagination($.extend({}, defaultOpts, {
                             startPage: 1,
@@ -168,7 +145,7 @@
                             next: '&#8674;',
                             first: '&#8676;',
                             last: '&#8677;',
-                            onPageClick: function(event, page) {
+                            onPageClick: function (event, page) {
                                 if (page == 1) {
                                     var to = 1;
                                 } else {
@@ -189,27 +166,26 @@
                 });
             }
 
-            $("#button_search, #perPage").on('click change', function(event) {
+            $("#button_search, #perPage").on('click change', function (event) {
                 let search = $('#input_search').val();
                 let per_page = $('#perPage').val() ?? 5;
                 loadpage(per_page, search);
             });
 
-            $("#button_refresh").on('click', function(event) {
+            $("#button_refresh").on('click', function (event) {
                 $('#input_search').val('');
                 loadpage(5, '');
             });
 
-
             // proses delete data
-            $('body').on('click', '.deleteData', function() {
+            $('body').on('click', '.deleteData', function () {
                 var id = $(this).data("id");
                 Swal.fire({
                     title: "Are you sure to Delete?",
                     icon: "question",
                     showCancelButton: true,
                     confirmButtonText: "Yes, delete it!"
-                }).then(function(result) {
+                }).then(function (result) {
                     if (result.value) {
                         $.ajax({
                             headers: {
@@ -217,19 +193,17 @@
                             },
                             type: "DELETE",
                             url: '{{ url("admin/$title") }}/' + id,
-                            success: function(data) {
+                            success: function (data) {
                                 loadpage(5, '');
                                 toastr.success("Successful delete data!");
                             },
-                            error: function(data) {
+                            error: function (data) {
                                 toastr.error("Failed delete data!");
                             }
                         });
                     }
                 });
             });
-
-
         });
     </script>
 @endpush

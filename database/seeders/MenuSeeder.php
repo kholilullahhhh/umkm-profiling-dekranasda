@@ -24,8 +24,17 @@ class MenuSeeder extends Seeder
             ['name' => 'Data UMKM', 'icon' => 'bi-stack', 'url' => 'umkm', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
             ['name' => 'Jenis Usaha', 'icon' => 'bi-stack', 'url' => 'jenisusaha', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
             ['name' => 'Data Pembinaan', 'icon' => 'bi-stack', 'url' => 'pembinaan', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+
             // ['name' => 'Profiling UMKM', 'icon' => 'bi-stack', 'url' => 'profilingUmkm', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
             // ['name' => 'Laporan & Analisis', 'icon' => 'bi-stack', 'url' => 'laporanAnalisis', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+
+            //APPS user
+            ['name' => 'APPS', 'icon' => '', 'url' => '#', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '0'],
+            ['name' => 'Data Pembinaan', 'icon' => 'bi-stack', 'url' => 'pembinaan', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+            ['name' => 'Data UMKM', 'icon' => 'bi-stack', 'url' => 'umkm', 'index' => 1, 'main_menu' => 'APPS', 'active' => '1', 'parent' => '1'],
+
+
+
 
             // DATA MASTER
 
