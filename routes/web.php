@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\UmkmController;
 use App\Http\Controllers\Admin\JenisUsahaController;
 use App\Http\Controllers\Admin\PembinaanController;
+use App\Http\Controllers\Admin\ProfilingController;
 // use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -92,6 +93,17 @@ Route::domain('')->group(function () { // development
             Route::get('/{id}/edit', [PembinaanController::class, 'edit'])->name('pembinaan.edit');
             Route::put('/{id}', [PembinaanController::class, 'update'])->name('pembinaan.update');
             Route::delete('/{id}', [PembinaanController::class, 'destroy'])->name('pembinaan.delete');
+        });
+
+        // MENU DATA PROFILING
+        Route::group(['prefix' => '/profiling'], function () {
+            Route::get('/', [ProfilingController::class, 'index'])->name('profiling.index');
+            Route::get('/data', [ProfilingController::class, 'data'])->name('profiling.data');
+            Route::get('/create', [ProfilingController::class, 'create'])->name('profiling.create');
+            Route::post('/store', [ProfilingController::class, 'store'])->name('profiling.store');
+            Route::get('/{id}/edit', [ProfilingController::class, 'edit'])->name('profiling.edit');
+            Route::put('/{id}', [ProfilingController::class, 'update'])->name('profiling.update');
+            Route::delete('/{id}', [ProfilingController::class, 'destroy'])->name('profiling.delete');
         });
 
 
