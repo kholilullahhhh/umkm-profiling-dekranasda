@@ -13,7 +13,7 @@ return new class extends Migration {
     {
         Schema::create('umkms', function (Blueprint $table) {
             $table->id();
-            // $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             // $table->foreign('jenis_usaha_id')->references('id')->on('jenis_usahas')->onDelete('cascade');
             $table->foreignId('jenis_usaha_id')->constrained('jenis_usahas')->onDelete('cascade');
             $table->string('nama_usaha');

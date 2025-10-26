@@ -14,11 +14,11 @@
         </td>
 
         <td>
-            <span class="text-muted">{{ $v->pemilik }}</span>
+            <span class="text-muted">{{ $v->user->name ?? 'N/A' }}</span>
         </td>
 
         <td>
-            <span class="badge bg-info">{{ $v->jenisUsaha->nama_jenis ?? $v->jenisUsaha->nama ?? 'N/A' }}</span>
+            <span class="text-muted">{{ $v->jenisUsaha->nama_jenis ?? $v->jenisUsaha->nama ?? 'N/A' }}</span>
         </td>
 
         <td>

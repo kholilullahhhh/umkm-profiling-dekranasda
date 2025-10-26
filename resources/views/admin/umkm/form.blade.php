@@ -7,12 +7,12 @@
 @section('content')
     <!--begin::Toolbar-->
     @component('admin._card.breadcrumb')
-    @slot('header')
-    {{ $title }}
-    @endslot
-    @slot('page')
-    Form
-    @endslot
+        @slot('header')
+            {{ $title }}
+        @endslot
+        @slot('page')
+            Form
+        @endslot
     @endcomponent
     <!--end::Toolbar-->
 
@@ -21,20 +21,16 @@
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
 
-            <!--begin::Tables Widget 10-->
             <div class="card mb-5 mb-xl-8">
-
-                <!--begin::Header-->
                 <div class="card-header align-items-center py-5 gap-2 gap-md-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bold fs-3 mb-1">Form {{ isset($data->id) ? 'Edit' : 'Input' }} UMKM</span>
+                        <span class="card-label fw-bold fs-3 mb-1">
+                            Form {{ isset($data->id) ? 'Edit' : 'Input' }} UMKM
+                        </span>
                     </h3>
                 </div>
-                <!--end::Header-->
 
-                <!--begin::Body-->
                 <div class="card-body pt-3">
-
                     <div class="row mt-5">
                         <!--begin:Form-->
                         <form id="kt_modal_new_target_form" class="form" action="#">
@@ -43,18 +39,29 @@
                             <input type="hidden" name="id" id="formId" value="{{ $data->id ?? null }}">
                             @csrf
 
-                            <!--begin::Input group-->
+                            <!-- ✅ Hidden field user_id -->
+                            <input type="hidden" name="user_id" id="user_id"
+                                value="{{ $data->user_id ?? '' }}">
+
                             <div class="row g-9 mb-8">
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2 required">Nama Usaha</label>
-                                    <input type="text" class="form-control" placeholder="Nama usaha" name="nama_usaha" id="nama_usaha"
+                                    <input type="text" class="form-control" placeholder="Nama usaha"
+                                        name="nama_usaha" id="nama_usaha"
                                         value="{{ $data->nama_usaha ?? '' }}" />
                                 </div>
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2 required">Pemilik</label>
-                                    <input type="text" class="form-control" placeholder="Nama pemilik" name="pemilik" id="pemilik"
-                                        value="{{ $data->pemilik ?? '' }}" />
+                                    <select class="form-select" name="pemilik" id="pemilik">
+                                        <option value="">Pilih Pemilik</option>
+                                        @foreach($users as $user)
+                                            <option value="{{ $user->id }}"
+                                                {{ isset($data->pemilik) && $data->pemilik == $user->id ? 'selected' : '' }}>
+                                                {{ $user->name }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                                 <div class="col-md-6 fv-row">
@@ -62,7 +69,8 @@
                                     <select class="form-select" name="jenis_usaha_id" id="jenis_usaha_id">
                                         <option value="">Pilih Jenis Usaha</option>
                                         @foreach($jenisUsaha as $jenis)
-                                            <option value="{{ $jenis->id }}" {{ isset($data->jenis_usaha_id) && $data->jenis_usaha_id == $jenis->id ? 'selected' : '' }}>
+                                            <option value="{{ $jenis->id }}"
+                                                {{ isset($data->jenis_usaha_id) && $data->jenis_usaha_id == $jenis->id ? 'selected' : '' }}>
                                                 {{ $jenis->nama_jenis ?? $jenis->nama }}
                                             </option>
                                         @endforeach
@@ -71,19 +79,23 @@
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2 required">Kabupaten</label>
-                                    <input type="text" class="form-control" placeholder="Kabupaten" name="kabupaten" id="kabupaten"
+                                    <input type="text" class="form-control" placeholder="Kabupaten"
+                                        name="kabupaten" id="kabupaten"
                                         value="{{ $data->kabupaten ?? '' }}" />
                                 </div>
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2">Alamat</label>
-                                    <textarea class="form-control" placeholder="Alamat lengkap" name="alamat" id="alamat" rows="3">{{ $data->alamat ?? '' }}</textarea>
+                                    <textarea class="form-control" placeholder="Alamat lengkap"
+                                        name="alamat" id="alamat" rows="3">{{ $data->alamat ?? '' }}</textarea>
                                 </div>
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2">Tahun Berdiri</label>
-                                    <input type="number" class="form-control" placeholder="Tahun berdiri" name="tahun_berdiri" id="tahun_berdiri"
-                                        min="1900" max="{{ date('Y') }}" value="{{ $data->tahun_berdiri ?? '' }}" />
+                                    <input type="number" class="form-control" placeholder="Tahun berdiri"
+                                        name="tahun_berdiri" id="tahun_berdiri"
+                                        min="1900" max="{{ date('Y') }}"
+                                        value="{{ $data->tahun_berdiri ?? '' }}" />
                                 </div>
 
                                 <div class="col-md-6 fv-row">
@@ -98,13 +110,15 @@
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2">Omset per Tahun (Rp)</label>
-                                    <input type="number" class="form-control" placeholder="Omset per tahun" name="omset_per_tahun" id="omset_per_tahun"
+                                    <input type="number" class="form-control" placeholder="Omset per tahun"
+                                        name="omset_per_tahun" id="omset_per_tahun"
                                         step="0.01" min="0" value="{{ $data->omset_per_tahun ?? '' }}" />
                                 </div>
 
                                 <div class="col-md-6 fv-row">
                                     <label class="fs-6 fw-semibold mb-2">Kontak</label>
-                                    <input type="text" class="form-control" placeholder="Nomor kontak" name="kontak" id="kontak"
+                                    <input type="text" class="form-control" placeholder="Nomor kontak"
+                                        name="kontak" id="kontak"
                                         value="{{ $data->kontak ?? '' }}" />
                                 </div>
 
@@ -119,13 +133,11 @@
                                     </div>
                                 </div>
                             </div>
-                            <!--end::Input group-->
 
-                            <!--begin::Actions-->
                             <div class="d-flex justify-content-end">
                                 <a href="{{ route($title . '.index') }}">
-                                    <button type="button" id="kt_modal_new_target_cancel" class="btn btn-secondary me-3"
-                                        data-bs-dismiss="modal">Batal</button>
+                                    <button type="button" id="kt_modal_new_target_cancel"
+                                        class="btn btn-secondary me-3" data-bs-dismiss="modal">Batal</button>
                                 </a>
                                 @if (isset($data->id))
                                     <button type="submit" id="kt_modal_new_target_update" class="btn btn-primary">
@@ -141,69 +153,27 @@
                                     </button>
                                 @endif
                             </div>
-                            <!--end::Actions-->
-
                         </form>
                         <!--end:Form-->
                     </div>
-
                 </div>
-                <!--begin::Body-->
             </div>
-            <!--end::Tables Widget 10-->
-
         </div>
-        <!--end::Content container-->
     </div>
-    <!--end::Content-->
 @endsection
 
 @push('jsScriptForm')
     <script type="text/javascript">
-        // Define form element
         const form = document.getElementById('kt_modal_new_target_form');
 
-        // Init form validation rules
-        var validator = FormValidation.formValidation(
-            form, {
+        var validator = FormValidation.formValidation(form, {
             fields: {
-                'nama_usaha': {
-                    validators: {
-                        notEmpty: {
-                            message: 'Nama usaha is required'
-                        }
-                    }
-                },
-                'pemilik': {
-                    validators: {
-                        notEmpty: {
-                            message: 'Nama pemilik is required'
-                        }
-                    }
-                },
-                'jenis_usaha_id': {
-                    validators: {
-                        notEmpty: {
-                            message: 'Jenis usaha is required'
-                        }
-                    }
-                },
-                'kabupaten': {
-                    validators: {
-                        notEmpty: {
-                            message: 'Kabupaten is required'
-                        }
-                    }
-                },
-                'skala_usaha': {
-                    validators: {
-                        notEmpty: {
-                            message: 'Skala usaha is required'
-                        }
-                    }
-                },
+                'nama_usaha': { validators: { notEmpty: { message: 'Nama usaha is required' } } },
+                'pemilik': { validators: { notEmpty: { message: 'Nama pemilik is required' } } },
+                'jenis_usaha_id': { validators: { notEmpty: { message: 'Jenis usaha is required' } } },
+                'kabupaten': { validators: { notEmpty: { message: 'Kabupaten is required' } } },
+                'skala_usaha': { validators: { notEmpty: { message: 'Skala usaha is required' } } },
             },
-
             plugins: {
                 trigger: new FormValidation.plugins.Trigger(),
                 bootstrap: new FormValidation.plugins.Bootstrap5({
@@ -212,10 +182,14 @@
                     eleValidClass: ''
                 })
             },
-        }
-        );
+        });
 
-        // Format currency for omset
+        // ✅ Set otomatis user_id berdasarkan pemilik
+        $('#pemilik').on('change', function() {
+            $('#user_id').val($(this).val());
+        });
+
+        // Format rupiah untuk omset
         $('#omset_per_tahun').on('input', function() {
             let value = $(this).val().replace(/[^\d]/g, '');
             if (value) {
@@ -234,7 +208,6 @@
                 separator = sisa ? '.' : '';
                 rupiah += separator + ribuan.join('.');
             }
-
             rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
             return rupiah;
         }
@@ -245,5 +218,4 @@
     @else
         @include('admin._card._createAjax')
     @endif
-
 @endpush

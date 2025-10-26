@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Services\Repositories\Contracts\UmkmContract;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\JenisUsaha; // Pastikan model JenisUsaha ada
+use App\Models\JenisUsaha;
+use App\Models\User;
 
 class UmkmController extends Controller
 {
@@ -52,7 +53,9 @@ class UmkmController extends Controller
         try {
             $title = $this->title;
             $jenisUsaha = JenisUsaha::all(); // Ambil data jenis usaha untuk dropdown
-            return view('admin.' . $this->title . '.form', compact('title', 'jenisUsaha'));
+            $users = User::all(); // Ambil data Pengguna | pemilik untuk dropdown
+
+            return view('admin.' . $this->title . '.form', compact('title', 'jenisUsaha', 'users'));
         } catch (\Exception $e) {
             return view('errors.message', ['message' => $e->getMessage()]);
         }
@@ -92,13 +95,14 @@ class UmkmController extends Controller
             $title = $this->title;
             $data = $this->repo->find($id);
             $jenisUsaha = JenisUsaha::all(); // Ambil data jenis usaha untuk dropdown
+            $users = User::all(); // Ambil data Pengguna | pemilik untuk dropdown
 
             if (!$data) {
                 return redirect()->route($this->title . '.index')
                     ->with('error', 'Data UMKM tidak ditemukan');
             }
 
-            return view('admin.' . $this->title . '.form', compact('title', 'data', 'jenisUsaha'));
+            return view('admin.' . $this->title . '.form', compact('title', 'data', 'jenisUsaha', 'users'));
         } catch (\Exception $e) {
             return view('errors.message', ['message' => $e->getMessage()]);
         }

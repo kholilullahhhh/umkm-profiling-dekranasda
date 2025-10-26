@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 class Umkm extends Model
 {
     protected $fillable = [
-        // 'user_id',
+        'user_id',
         'jenis_usaha_id',
         'nama_usaha',
         'pemilik',
@@ -25,10 +25,10 @@ class Umkm extends Model
         'tahun_berdiri' => 'integer'
     ];
 
-    // public function user()
-    // {
-    //     return $this->belongsTo(User::class);
-    // }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     public function jenisUsaha()
     {
